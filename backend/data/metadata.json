@@ -1,0 +1,65 @@
+{
+  "generated_at": "2025-10-30T02:11:19.499595",
+  "n_samples": 10000,
+  "n_malicious": 3000,
+  "n_legitimate": 7000,
+  "features": [
+    "amount",
+    "gas_price",
+    "gas_used",
+    "num_transfers",
+    "unique_addresses",
+    "time_of_day",
+    "contract_interaction",
+    "sender_tx_count",
+    "receiver_tx_count",
+    "is_malicious"
+  ],
+  "feature_ranges": {
+    "amount": {
+      "min": 2.8980851389822087e-06,
+      "max": 14.911738699509872,
+      "mean": 0.6412504899868696
+    },
+    "gas_price": {
+      "min": 0.18328166616291952,
+      "max": 179.60589805199726,
+      "mean": 59.06412427576855
+    },
+    "gas_used": {
+      "min": 171.1827779210289,
+      "max": 277531.38157413655,
+      "mean": 66051.57691409044
+    },
+    "num_transfers": {
+      "min": 0.0,
+      "max": 19.0,
+      "mean": 3.413
+    },
+    "unique_addresses": {
+      "min": 0.0,
+      "max": 22.0,
+      "mean": 4.4133
+    },
+    "time_of_day": {
+      "min": 0.0,
+      "max": 23.0,
+      "mean": 9.1401
+    },
+    "contract_interaction": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.5072
+    },
+    "sender_tx_count": {
+      "min": 0.0,
+      "max": 75.0,
+      "mean": 36.4729
+    },
+    "receiver_tx_count": {
+      "min": 0.0,
+      "max": 75.0,
+      "mean": 36.4379
+    }
+  }
+}
