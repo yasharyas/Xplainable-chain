@@ -1,416 +1,853 @@
-# XAI-Chain: Explainable AI Blockchain Transaction Analyzer# XAI-Chain: Explainable AI for Blockchain Security
+<div align="center"><div align="center">
 
 
 
-Full-stack platform using Machine Learning to detect malicious blockchain transactions with explainable AI insights.<div align="center">
+# 🔗 XAI-Chain# 🔗 XAI-Chain
 
 
 
-## Tech Stack![XAI-Chain Logo](https://via.placeholder.com/150)
+### Explainable AI for Blockchain Security### Explainable AI for Blockchain Security
 
 
 
-**Frontend:** Next.js 14, TypeScript, Tailwind CSS, RainbowKit, Wagmi  **Detect malicious blockchain transactions with AI • Explain every decision • Verify on-chain**
-
-**Backend:** FastAPI, Python 3.11, XGBoost, SHAP  
-
-**Blockchain:** Solidity, Hardhat, ethers.js  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-**Storage:** IPFS (Pinata)[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
-
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688)](https://fastapi.tiangolo.com/)
-
-## Features[![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636)](https://soliditylang.org/)
+**Detect malicious blockchain transactions with AI • Explain every decision • Verify on-chain****Detect malicious blockchain transactions with AI • Explain every decision • Verify on-chain**
 
 
 
-- Real-time transaction analysis using ML</div>
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- Explainable AI with SHAP values
+[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
 
-- Multi-chain wallet support## 🎯 Overview
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688)](https://fastapi.tiangolo.com/)[![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688)](https://fastapi.tiangolo.com/)
 
-- IPFS-based audit trail
+[![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636)](https://soliditylang.org/)[![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636)](https://soliditylang.org/)
 
-- Smart contract verificationXAI-Chain is a production-ready Web3 + AI security platform that combines machine learning with explainable AI (XAI) to detect malicious blockchain transactions. Every prediction is explained using SHAP values and stored immutably on Polygon Mumbai testnet.
 
-- Interactive dashboard
 
-### Key Features
+</div></div>
 
-## Project Structure
 
-- 🤖 **AI-Powered Detection**: XGBoost model trained on blockchain transaction patterns
 
-```- 📊 **Explainable AI**: SHAP (SHapley Additive exPlanations) for transparency
+------
 
-Xplainable-blockchain/- ⛓️ **On-Chain Verification**: Immutable storage on Polygon Mumbai
 
-├── backend/              # FastAPI server- 📦 **IPFS Storage**: Decentralized explanation data via Pinata
 
-│   ├── app/- 🎨 **Modern UI**: Next.js 14 with Tailwind CSS and shadcn/ui
+## 🎯 Overview## 🎯 Overview
 
-│   │   ├── main.py      # API entry- 🔗 **Web3 Integration**: RainbowKit + Wagmi for seamless wallet connection
 
-│   │   ├── routers/     # Endpoints
 
-│   │   ├── services/    # Blockchain and IPFS## 🏗️ Architecture
+XAI-Chain is a production-ready Web3 + AI security platform that combines machine learning with explainable AI (XAI) to detect malicious blockchain transactions. Every prediction is explained using SHAP values and stored immutably on Polygon Mumbai testnet.XAI-Chain is a production-ready Web3 + AI security platform that combines machine learning with explainable AI (XAI) to detect malicious blockchain transactions. Every prediction is explained using SHAP values and stored immutably on Polygon Mumbai testnet.
 
-│   │   ├── utils/       # Feature engineering
 
-│   │   └── ml/          # Trained models```
 
-│   └── data/            # Training data┌─────────────────┐       ┌──────────────────┐       ┌─────────────────┐
+### ✨ Key Features### ✨ Key Features
 
-├── frontend/            # Next.js app│   Frontend      │       │   Backend API    │       │   Blockchain    │
 
-│   ├── app/│   (Next.js 14)  │◄─────►│   (FastAPI)      │◄─────►│   (Polygon)     │
 
-│   │   ├── page.tsx           # Home│   + RainbowKit  │       │   + ML Models    │       │   + Smart       │
+- 🤖 **AI-Powered Detection**: XGBoost model trained on blockchain transaction patterns- 🤖 **AI-Powered Detection**: XGBoost model trained on blockchain transaction patterns
 
-│   │   ├── analyze/page.tsx   # Analysis│                 │       │   + SHAP         │       │     Contract    │
+- 📊 **Explainable AI**: SHAP (SHapley Additive exPlanations) for transparency- 📊 **Explainable AI**: SHAP (SHapley Additive exPlanations) for transparency
 
-│   │   └── dashboard/page.tsx # Dashboard└─────────────────┘       └──────────────────┘       └─────────────────┘
+- ⛓️ **On-Chain Verification**: Immutable storage on Polygon Mumbai testnet- ⛓️ **On-Chain Verification**: Immutable storage on Polygon Mumbai testnet
 
-│   └── config/          # Web3 config                                   │
+- 📦 **IPFS Storage**: Decentralized explanation data via Pinata- 📦 **IPFS Storage**: Decentralized explanation data via Pinata
 
-└── blockchain/          # Hardhat                                   ▼
+- 🎨 **Modern UI**: Next.js 14 with Tailwind CSS and shadcn/ui- 🎨 **Modern UI**: Next.js 14 with Tailwind CSS and shadcn/ui
 
-    ├── contracts/       # Solidity                          ┌──────────────────┐
+- 🔗 **Web3 Integration**: RainbowKit + Wagmi for seamless wallet connection- 🔗 **Web3 Integration**: RainbowKit + Wagmi for seamless wallet connection
 
-    ├── scripts/         # Deploy                          │   IPFS (Pinata)  │
+- 🔍 **Real-Time Analysis**: Instant transaction risk assessment- 🔍 **Real-Time Analysis**: Instant transaction risk assessment
 
-    └── test/           # Tests                          │   Storage        │
+- 📈 **Interactive Dashboard**: Monitor and track analysis history- 📈 **Interactive Dashboard**: Monitor and track analysis history
 
-```                          └──────────────────┘
 
-```
 
-## Quick Start
+------
 
-## 🚀 Quick Start
 
-### Prerequisites
 
-### Prerequisites
+## 🏗️ Architecture## 🏗️ Architecture
+
+
+
+``````
+
+┌─────────────────┐       ┌──────────────────┐       ┌─────────────────┐┌─────────────────┐       ┌──────────────────┐       ┌─────────────────┐
+
+│   Frontend      │       │   Backend API    │       │   Blockchain    ││   Frontend      │       │   Backend API    │       │   Blockchain    │
+
+│   (Next.js 14)  │◄─────►│   (FastAPI)      │◄─────►│   (Polygon)     ││   (Next.js 14)  │◄─────►│   (FastAPI)      │◄─────►│   (Polygon)     │
+
+│   + RainbowKit  │       │   + ML Models    │       │   + Smart       ││   + RainbowKit  │       │   + ML Models    │       │   + Smart       │
+
+│                 │       │   + SHAP         │       │     Contract    ││                 │       │   + SHAP         │       │     Contract    │
+
+└─────────────────┘       └──────────────────┘       └─────────────────┘└─────────────────┘       └──────────────────┘       └─────────────────┘
+
+                                   │                                   │
+
+                                   ▼                                   ▼
+
+                          ┌──────────────────┐                          ┌──────────────────┐
+
+                          │   IPFS (Pinata)  │                          │   IPFS (Pinata)  │
+
+                          │   Storage        │                          │   Storage        │
+
+                          └──────────────────┘                          └──────────────────┘
+
+``````
+
+
+
+### Data Flow### Data Flow
+
+
+
+1. **User submits transaction hash** via frontend1. **User submits transaction hash** via frontend
+
+2. **Backend fetches transaction data** from blockchain2. **Backend fetches transaction data** from blockchain
+
+3. **Features are extracted** (gas price, value, sender history, etc.)3. **Features are extracted** (gas price, value, sender history, etc.)
+
+4. **XGBoost model predicts** if transaction is malicious4. **XGBoost model predicts** if transaction is malicious
+
+5. **SHAP generates explanation** showing feature importance5. **SHAP generates explanation** showing feature importance
+
+6. **Explanation uploaded to IPFS** via Pinata6. **Explanation uploaded to IPFS** via Pinata
+
+7. **Smart contract stores** IPFS hash + risk score on-chain7. **Smart contract stores** IPFS hash + risk score on-chain
+
+8. **Frontend displays** prediction, explanation, and verification links8. **Frontend displays** prediction, explanation, and verification links
+
+
+
+------
+
+
+
+## 📦 Project Structure## 📦 Project Structure
+
+
+
+``````
+
+xai-chain/xai-chain/
+
+├── frontend/                  # Next.js 14 frontend├── frontend/                  # Next.js 14 frontend
+
+│   ├── app/                   # App router pages│   ├── app/                   # App router pages
+
+│   │   ├── page.tsx           # Landing page│   │   ├── page.tsx           # Landing page
+
+│   │   ├── analyze/           # Transaction analysis│   │   ├── analyze/           # Transaction analysis
+
+│   │   └── dashboard/         # Analytics dashboard│   │   └── dashboard/         # Analytics dashboard
+
+│   ├── components/            # React components│   ├── components/            # React components
+
+│   ├── config/                # Wagmi & Web3 configuration│   ├── config/                # Wagmi & Web3 configuration
+
+│   └── public/                # Static assets & ABIs│   └── public/                # Static assets & ABIs
+
+││
+
+├── backend/                   # FastAPI backend├── backend/                   # FastAPI backend
+
+│   ├── app/│   ├── app/
+
+│   │   ├── main.py            # API entry point│   │   ├── main.py            # API entry point
+
+│   │   ├── routers/           # API endpoints│   │   ├── routers/           # API endpoints
+
+│   │   ├── models/            # AI models & Pydantic schemas│   │   ├── models/            # AI models & Pydantic schemas
+
+│   │   ├── services/          # Blockchain & IPFS services│   │   ├── services/          # Blockchain & IPFS services
+
+│   │   └── utils/             # Feature engineering helpers│   │   └── utils/             # Feature engineering helpers
+
+│   ├── data/                  # Training data & scripts│   ├── data/                  # Training data & scripts
+
+│   └── requirements.txt       # Python dependencies│   └── requirements.txt       # Python dependencies
+
+││
+
+├── blockchain/                # Smart contracts & Hardhat├── blockchain/                # Smart contracts & Hardhat
+
+│   ├── contracts/             # Solidity files│   ├── contracts/             # Solidity files
+
+│   ├── scripts/               # Deployment scripts│   ├── scripts/               # Deployment scripts
+
+│   ├── test/                  # Contract tests│   ├── test/                  # Contract tests
+
+│   └── hardhat.config.js      # Hardhat configuration│   └── hardhat.config.js      # Hardhat configuration
+
+││
+
+└── data/                      # Data generation & models└── data/                      # Data generation & models
+
+    ├── generate_sample_data.py    ├── generate_sample_data.py
+
+    └── processed/             # Training datasets    └── processed/             # Training datasets
+
+``````
+
+
+
+------
+
+
+
+## 🚀 Quick Start## 🚀 Quick Start
+
+
+
+### Prerequisites## 🚀 Quick Start
+
+
+
+- **Node.js** 20+ and npm### Prerequisites
+
+- **Python** 3.10+ and pip
+
+- **MetaMask** wallet extension### Prerequisites
+
+- **API Keys**: Infura, Pinata, WalletConnect, Etherscan
 
 - Python 3.11+
 
+### Installation
+
 - Node.js 16+- **Node.js** 20+ and npm
-
-- WSL2 (for Windows)- **Python** 3.10+ and pip
-
-- **MetaMask** wallet extension
-
-### 1. Backend Setup- **API Keys** (see Setup section)
-
-
-
-```powershell### Installation
-
-cd backend
 
 #### 1. Clone Repository
 
-# create virtual environment
+- WSL2 (for Windows)- **Python** 3.10+ and pip
 
-python -m venv venv```powershell
+```bash
 
-git clone https://github.com/yourusername/xai-chain.git
+git clone https://github.com/yasharyas/Xplainable-chain.git- **MetaMask** wallet extension
 
-# activate itcd xai-chain
+cd Xplainable-chain
 
-.\venv\Scripts\Activate.ps1```
+```### 1. Backend Setup- **API Keys** (see Setup section)
 
 
 
-# install packages#### 2. Blockchain Setup
+#### 2. Blockchain Setup
 
-pip install -r requirements.txt
 
-```powershell
 
-# generate training data# Navigate to blockchain directory
-
-python data/generate_sample_data.pycd blockchain
-
-
-
-# train ML model# Install dependencies
-
-python train_model.pynpm install
-
-```
-
-# Copy environment file
-
-### 2. Frontend Setupcopy .env.example .env
-
-
-
-```powershell# Edit .env with your private key and Infura URL
-
-cd frontend# Get Mumbai MATIC from: https://mumbaifaucet.com/
-
-
-
-# install packages using WSL# Compile contracts
-
-wsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/frontend && npm install"npx hardhat compile
-
-```
-
-# Deploy to Polygon Mumbai
-
-### 3. Blockchain Setupnpx hardhat run scripts/deploy.js --network mumbai
-
-```
-
-```powershell
-
-cd blockchain**Important**: Save the deployed contract address!
-
-
-
-# install packages#### 3. Backend Setup
-
-wsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/blockchain && npm install"
-
-```powershell
-
-# compile contracts# Navigate to backend directory
-
-wsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/blockchain && npx hardhat compile"cd ..\backend
-
-
-
-# run tests# Create virtual environment
-
-wsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/blockchain && npx hardhat test"python -m venv venv
-
-```
-
-# Activate virtual environment
-
-## Running the Application.\venv\Scripts\activate
-
-
-
-### Start Backend# Install dependencies
-
-pip install -r requirements.txt
-
-```powershell
-
-cd d:\CODING\Xplainable-blockchain\backend# Copy environment file
-
-$env:PYTHONPATH="d:\CODING\Xplainable-blockchain\backend"copy .env.example .env
-
-d:\CODING\Xplainable-blockchain\backend\venv\Scripts\python.exe -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-
-```# Edit .env with:
-
-# - Contract address from step 2
-
-Backend: **http://localhost:8000**# - Infura URL
-
-# - Pinata API keys
-
-### Start Frontend# - MongoDB URI
-
-```
-
-```powershell
-
-cd d:\CODING\Xplainable-blockchain\frontend#### 4. Generate Sample Data & Train Model
-
-wsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/frontend && npm run dev"
-
-``````powershell
-
-# Generate sample transaction data
-
-Frontend: **http://localhost:3000**python data\generate_sample_data.py
-
-
-
-### Start Local Blockchain (Optional)# This creates data/processed/features.csv with 10,000 sample transactions
-
-```
-
-```powershell
-
-cd d:\CODING\Xplainable-blockchain\blockchain**Train the ML model:**
-
-wsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/blockchain && npx hardhat node"
-
-```Create a Jupyter notebook or Python script with:
-
-
-
-## Configuration```python
-
-import pandas as pd
-
-### Backend (.env)import numpy as np
-
-from sklearn.model_selection import train_test_split
-
-```envfrom sklearn.preprocessing import StandardScaler
-
-# blockchain settingsfrom sklearn.metrics import classification_report, roc_auc_score
-
-INFURA_URL=https://polygon-mumbai.infura.io/v3/YOUR_KEYimport xgboost as xgb
-
-PRIVATE_KEY=your_private_keyimport pickle
-
-CONTRACT_ADDRESS=deployed_address
-
-# Load data
-
-# IPFS storagedf = pd.read_csv('data/processed/features.csv')
-
-PINATA_JWT=your_jwt_token
-
-# Prepare features
-
-# database optionalfeature_columns = [
-
-MONGODB_URI=mongodb://localhost:27017/xaichain    'gas_price', 'gas_used', 'value', 'gas_price_deviation',
-
-    'sender_tx_count', 'contract_age', 'is_contract_creation',
-
-# APIs    'function_signature_hash', 'block_gas_used_ratio'
-
-ETHERSCAN_API_KEY=your_key]
-
-```
-
-X = df[feature_columns]
-
-### Frontend (.env.local)y = df['is_malicious']
-
-
-
-```env# Split data
-
-NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_idX_train, X_test, y_train, y_test = train_test_split(
-
-NEXT_PUBLIC_INFURA_API_KEY=your_key    X, y, test_size=0.2, random_state=42, stratify=y
-
-NEXT_PUBLIC_API_URL=http://localhost:8000)
-
-```
-
-# Scale features
-
-## Deploy Smart Contractscaler = StandardScaler()
-
-X_train_scaled = scaler.fit_transform(X_train)
-
-### Local DeploymentX_test_scaled = scaler.transform(X_test)
-
-
-
-Terminal 1 - Start node:# Train XGBoost
-
-```powershellmodel = xgb.XGBClassifier(
-
-cd blockchain    n_estimators=100,
-
-wsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/blockchain && npx hardhat node"    max_depth=6,
-
-```    learning_rate=0.1,
-
-    random_state=42
-
-Terminal 2 - Deploy:)
-
-```powershellmodel.fit(X_train_scaled, y_train)
+```bash```powershell### Installation
 
 cd blockchain
 
+npm installcd backend
+
+
+
+# Copy and configure environment#### 1. Clone Repository
+
+cp .env.example .env
+
+# Edit with: POLYGON_MUMBAI_RPC, PRIVATE_KEY# create virtual environment
+
+
+
+# Get Mumbai MATIC: https://mumbaifaucet.com/python -m venv venv```powershell
+
+
+
+# Compile and testgit clone https://github.com/yourusername/xai-chain.git
+
+npx hardhat compile
+
+npx hardhat test  # Should pass 6/6 tests# activate itcd xai-chain
+
+
+
+# Deploy to Mumbai.\venv\Scripts\Activate.ps1```
+
+npx hardhat run scripts/deploy.js --network mumbai
+
+# Save the contract address!
+
+```
+
+# install packages#### 2. Blockchain Setup
+
+#### 3. Backend Setup
+
+pip install -r requirements.txt
+
+```bash
+
+cd ../backend```powershell
+
+python -m venv venv
+
+.\venv\Scripts\activate  # Windows# generate training data# Navigate to blockchain directory
+
+# source venv/bin/activate  # Linux/Mac
+
+python data/generate_sample_data.pycd blockchain
+
+pip install -r requirements.txt
+
+
+
+# Configure environment
+
+cp .env.example .env# train ML model# Install dependencies
+
+# Edit with: CONTRACT_ADDRESS, INFURA_URL, PINATA keys
+
+python train_model.pynpm install
+
+# Prepare ML model
+
+python data/generate_sample_data.py```
+
+python train_model.py
+
+```# Copy environment file
+
+
+
+#### 4. Frontend Setup### 2. Frontend Setupcopy .env.example .env
+
+
+
+```bash
+
+cd ../frontend
+
+npm install```powershell# Edit .env with your private key and Infura URL
+
+
+
+cp .env.local.example .env.localcd frontend# Get Mumbai MATIC from: https://mumbaifaucet.com/
+
+# Edit with: API_URL, CONTRACT_ADDRESS, WALLETCONNECT_PROJECT_ID
+
+```
+
+
+
+### Running the Application# install packages using WSL# Compile contracts
+
+
+
+Open **3 terminals**:wsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/frontend && npm install"npx hardhat compile
+
+
+
+**Terminal 1 - Backend:**```
+
+```bash
+
+cd backend# Deploy to Polygon Mumbai
+
+.\venv\Scripts\activate
+
+uvicorn app.main:app --reload### 3. Blockchain Setupnpx hardhat run scripts/deploy.js --network mumbai
+
+# API: http://localhost:8000
+
+``````
+
+
+
+**Terminal 2 - Frontend:**```powershell
+
+```bash
+
+cd frontendcd blockchain**Important**: Save the deployed contract address!
+
+npm run dev
+
+# UI: http://localhost:3000
+
+```
+
+# install packages#### 3. Backend Setup
+
+**Terminal 3 - Optional (Local Blockchain):**
+
+```bashwsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/blockchain && npm install"
+
+cd blockchain
+
+npx hardhat node```powershell
+
+```
+
+# compile contracts# Navigate to backend directory
+
+### Using the Platform
+
+wsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/blockchain && npx hardhat compile"cd ..\backend
+
+1. Open **http://localhost:3000**
+
+2. **Connect wallet** (MetaMask on Polygon Mumbai)
+
+3. Go to **"Analyze Transaction"**
+
+4. Enter a transaction hash or try this example:# run tests# Create virtual environment
+
+   ```
+
+   0xbf7ba7b25e4fbca4ee0ff460dba1c9ccaf5195e9c2ea24909b0f6e605636ceacwsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/blockchain && npx hardhat test"python -m venv venv
+
+   ```
+
+5. Click **"Analyze Transaction"**```
+
+6. View **risk assessment** + **SHAP explanation** + **on-chain verification**
+
+# Activate virtual environment
+
+---
+
+## Running the Application.\venv\Scripts\activate
+
+## 📖 API Documentation
+
+
+
+Once backend is running:
+
+### Start Backend# Install dependencies
+
+- **Interactive Docs**: http://localhost:8000/docs
+
+- **ReDoc**: http://localhost:8000/redocpip install -r requirements.txt
+
+
+
+### Main Endpoints```powershell
+
+
+
+#### Analyze Transactioncd d:\CODING\Xplainable-blockchain\backend# Copy environment file
+
+```http
+
+POST /api/analyze$env:PYTHONPATH="d:\CODING\Xplainable-blockchain\backend"copy .env.example .env
+
+Content-Type: application/json
+
+d:\CODING\Xplainable-blockchain\backend\venv\Scripts\python.exe -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+{
+
+  "tx_hash": "0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060",```# Edit .env with:
+
+  "network": "ethereum"
+
+}# - Contract address from step 2
+
+```
+
+Backend: **http://localhost:8000**# - Infura URL
+
+#### Verify Explanation
+
+```http# - Pinata API keys
+
+GET /api/verify/{tx_hash}
+
+```### Start Frontend# - MongoDB URI
+
+
+
+#### Get Audit Trail```
+
+```http
+
+GET /api/audit?limit=10&skip=0```powershell
+
+```
+
+cd d:\CODING\Xplainable-blockchain\frontend#### 4. Generate Sample Data & Train Model
+
+---
+
+wsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/frontend && npm run dev"
+
+## 🧪 Testing
+
+``````powershell
+
+### Smart Contract Tests
+
+# Generate sample transaction data
+
+```bash
+
+cd blockchainFrontend: **http://localhost:3000**python data\generate_sample_data.py
+
+npx hardhat test
+
+# Expected: 6 passing tests
+
+```
+
+### Start Local Blockchain (Optional)# This creates data/processed/features.csv with 10,000 sample transactions
+
+### Backend Tests
+
+```
+
+```bash
+
+cd backend```powershell
+
+pytest tests/
+
+```cd d:\CODING\Xplainable-blockchain\blockchain**Train the ML model:**
+
+
+
+---wsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/blockchain && npx hardhat node"
+
+
+
+## 🤖 ML Model Details```Create a Jupyter notebook or Python script with:
+
+
+
+### Features (9 total)
+
+
+
+1. **amount** - Transaction value in ETH## Configuration```python
+
+2. **gas_price** - Gas price in Gwei
+
+3. **gas_used** - Gas consumedimport pandas as pd
+
+4. **num_transfers** - Number of token transfers
+
+5. **unique_addresses** - Unique address count### Backend (.env)import numpy as np
+
+6. **time_of_day** - Hour of transaction (0-23)
+
+7. **contract_interaction** - Boolean flag for contract callsfrom sklearn.model_selection import train_test_split
+
+8. **sender_tx_count** - Sender's transaction history
+
+9. **receiver_tx_count** - Receiver's transaction history```envfrom sklearn.preprocessing import StandardScaler
+
+
+
+### Performance Metrics# blockchain settingsfrom sklearn.metrics import classification_report, roc_auc_score
+
+
+
+- **Algorithm**: XGBoostINFURA_URL=https://polygon-mumbai.infura.io/v3/YOUR_KEYimport xgboost as xgb
+
+- **Training Samples**: 10,000
+
+- **Test Accuracy**: 100%PRIVATE_KEY=your_private_keyimport pickle
+
+- **Explainability**: SHAP values for feature importance
+
+CONTRACT_ADDRESS=deployed_address
+
+### Retraining the Model
+
+# Load data
+
+```bash
+
+cd backend# IPFS storagedf = pd.read_csv('data/processed/features.csv')
+
+.\venv\Scripts\activate
+
+python train_model.pyPINATA_JWT=your_jwt_token
+
+```
+
+# Prepare features
+
+---
+
+# database optionalfeature_columns = [
+
+## 🔑 Environment Variables
+
+MONGODB_URI=mongodb://localhost:27017/xaichain    'gas_price', 'gas_used', 'value', 'gas_price_deviation',
+
+### Blockchain (.env)
+
+    'sender_tx_count', 'contract_age', 'is_contract_creation',
+
+```env
+
+POLYGON_MUMBAI_RPC=https://polygon-mumbai.infura.io/v3/YOUR_KEY# APIs    'function_signature_hash', 'block_gas_used_ratio'
+
+PRIVATE_KEY=your_private_key_without_0x
+
+POLYGONSCAN_API_KEY=your_polygonscan_keyETHERSCAN_API_KEY=your_key]
+
+```
+
+```
+
+### Backend (.env)
+
+X = df[feature_columns]
+
+```env
+
+INFURA_URL=https://polygon-mumbai.infura.io/v3/YOUR_KEY### Frontend (.env.local)y = df['is_malicious']
+
+PRIVATE_KEY=your_private_key_without_0x
+
+CONTRACT_ADDRESS=0x_deployed_contract_address
+
+PINATA_API_KEY=your_pinata_key
+
+PINATA_API_SECRET=your_pinata_secret```env# Split data
+
+MONGODB_URI=mongodb://localhost:27017/xaichain
+
+ETHERSCAN_API_KEY=your_etherscan_keyNEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_idX_train, X_test, y_train, y_test = train_test_split(
+
+```
+
+NEXT_PUBLIC_INFURA_API_KEY=your_key    X, y, test_size=0.2, random_state=42, stratify=y
+
+### Frontend (.env.local)
+
+NEXT_PUBLIC_API_URL=http://localhost:8000)
+
+```env
+
+NEXT_PUBLIC_API_URL=http://localhost:8000```
+
+NEXT_PUBLIC_CONTRACT_ADDRESS=0x_deployed_contract_address
+
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_walletconnect_id# Scale features
+
+```
+
+## Deploy Smart Contractscaler = StandardScaler()
+
+---
+
+X_train_scaled = scaler.fit_transform(X_train)
+
+## 🛠️ Tech Stack
+
+### Local DeploymentX_test_scaled = scaler.transform(X_test)
+
+| Layer | Technology |
+
+|-------|-----------|
+
+| **Frontend** | Next.js 14, TypeScript, Tailwind CSS, shadcn/ui |
+
+| **Web3** | ethers.js v6, Wagmi v2, RainbowKit |Terminal 1 - Start node:# Train XGBoost
+
+| **Backend** | FastAPI, Uvicorn, Python 3.10+ |
+
+| **AI/ML** | XGBoost, SHAP, scikit-learn, pandas, numpy |```powershellmodel = xgb.XGBClassifier(
+
+| **Blockchain** | Solidity 0.8.20, Hardhat, Polygon Mumbai |
+
+| **Storage** | IPFS (Pinata), MongoDB |cd blockchain    n_estimators=100,
+
+| **APIs** | Web3.py, Infura, Etherscan |
+
+wsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/blockchain && npx hardhat node"    max_depth=6,
+
+---
+
+```    learning_rate=0.1,
+
+## 🐛 Troubleshooting
+
+    random_state=42
+
+### Frontend Chunk Error
+
+Terminal 2 - Deploy:)
+
+```bash
+
+cd frontend```powershellmodel.fit(X_train_scaled, y_train)
+
+rm -rf .next
+
+npm run devcd blockchain
+
+```
+
 wsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/blockchain && npx hardhat run scripts/deploy.js --network localhost"# Evaluate
+
+### Backend Module Not Found
 
 ```y_pred = model.predict(X_test_scaled)
 
-print(classification_report(y_test, y_pred))
+```bash
 
-Copy the address and update `backend/.env`:
+# Windowsprint(classification_report(y_test, y_pred))
 
-# Save model and scaler
+$env:PYTHONPATH="D:\path\to\backend"
 
-```envwith open('app/ml/model.pkl', 'wb') as f:
+python -m uvicorn app.main:app --reloadCopy the address and update `backend/.env`:
+
+
+
+# Linux/Mac# Save model and scaler
+
+export PYTHONPATH="/path/to/backend"
+
+python -m uvicorn app.main:app --reload```envwith open('app/ml/model.pkl', 'wb') as f:
+
+```
 
 INFURA_URL=http://127.0.0.1:8545    pickle.dump(model, f)
 
+### Port Already in Use
+
 CONTRACT_ADDRESS=0x5FbDB2315678afecb367f032d93F642f64180aa3with open('app/ml/scaler.pkl', 'wb') as f:
 
-PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80    pickle.dump(scaler, f)
+```bash
+
+# Windows - Stop processesPRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80    pickle.dump(scaler, f)
+
+Get-Process python | Where-Object {$_.CommandLine -like "*uvicorn*"} | Stop-Process -Force
+
+Get-Process node | Stop-Process -Force```
+
+
+
+# Linux/Macprint("✅ Model saved!")
+
+lsof -ti:8000 | xargs kill -9
+
+lsof -ti:3000 | xargs kill -9Restart backend to use real blockchain.```
 
 ```
 
-print("✅ Model saved!")
-
-Restart backend to use real blockchain.```
 
 
+### Contract Deployment Failed
 
 ## Using the Platform#### 5. Frontend Setup
 
+- Ensure you have Mumbai MATIC: https://mumbaifaucet.com/
 
+- Check your `PRIVATE_KEY` and `POLYGON_MUMBAI_RPC` in `.env`
+
+- Verify Infura API key is valid
 
 1. Open http://localhost:3000```powershell
 
+---
+
 2. Connect wallet (MetaMask, Rainbow, etc)# Navigate to frontend directory
+
+## 🤝 Contributing
 
 3. Go to "Analyze Transaction"cd ..\frontend
 
+Contributions are welcome! Please follow these steps:
+
 4. Enter transaction hash
 
-5. Click "Analyze Transaction"# Install dependencies
+1. Fork the repository
 
-6. View risk analysisnpm install
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)5. Click "Analyze Transaction"# Install dependencies
+
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+
+4. Push to the branch (`git push origin feature/AmazingFeature`)6. View risk analysisnpm install
+
+5. Open a Pull Request
 
 
+
+---
 
 ## API Endpoints# Copy environment file
 
+## 📄 License
+
 copy .env.local.example .env.local
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 **Health Check**
 
+---
+
 ```# Edit .env.local with:
+
+## 🙏 Acknowledgments
 
 GET http://localhost:8000/# - API URL (http://localhost:8000)
 
-```# - Contract address
+- **SHAP**: For explainable AI framework
 
-# - WalletConnect Project ID (get from https://cloud.walletconnect.com)
+- **Hardhat**: For Ethereum development environment```# - Contract address
+
+- **RainbowKit**: For beautiful wallet connection UI
+
+- **shadcn/ui**: For modern UI components# - WalletConnect Project ID (get from https://cloud.walletconnect.com)
+
+- **Pinata**: For IPFS pinning service
 
 **Analyze Transaction**```
 
+---
+
 ```
+
+## 🗺️ Roadmap
 
 POST http://localhost:8000/api/analyze/### Running the Application
 
-```
+- [ ] Support for multiple blockchains (Ethereum, BSC, Avalanche)
 
-Open **3 terminal windows**:
+- [ ] Real-time monitoring dashboard```
 
-Request:
+- [ ] Batch transaction analysis
 
-```json**Terminal 1 - Backend:**
+- [ ] Advanced XAI visualizations (LIME, counterfactuals)Open **3 terminal windows**:
 
-{```powershell
+- [ ] Mobile app (React Native)
 
-  "tx_hash": "0xbf7ba7b25e4fbca4ee0ff460dba1c9ccaf5195e9c2ea24909b0f6e605636ceac",cd backend
+- [ ] Historical analytics and trendsRequest:
 
-  "network": "ethereum",.\venv\Scripts\activate
+- [ ] API rate limiting and authentication
 
-  "transaction_data": {uvicorn app.main:app --reload
+- [ ] Mainnet deployment```json**Terminal 1 - Backend:**
 
-    "amount": 0.01040272,```
+
+
+---{```powershell
+
+
+
+<div align="center">  "tx_hash": "0xbf7ba7b25e4fbca4ee0ff460dba1c9ccaf5195e9c2ea24909b0f6e605636ceac",cd backend
+
+
+
+**Built with ❤️ for the Web3 community**  "network": "ethereum",.\venv\Scripts\activate
+
+
+
+[GitHub](https://github.com/yasharyas/Xplainable-chain) • [Documentation](#) • [Issues](https://github.com/yasharyas/Xplainable-chain/issues)  "transaction_data": {uvicorn app.main:app --reload
+
+
+
+</div>    "amount": 0.01040272,```
+
 
     "gas_price": 0.117164461,API will run at: http://localhost:8000
 
