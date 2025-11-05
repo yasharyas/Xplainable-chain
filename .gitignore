@@ -11,6 +11,15 @@ env/
 .env.local
 .env.*.local
 
+# Shell scripts (local development only)
+start_backend.sh
+start_frontend.sh
+
+# API keys and configuration
+**/config.py
+frontend/config/wagmi.ts
+public/abi/contract-address.json
+
 # Build outputs
 frontend/.next/
 frontend/out/
@@ -60,3 +69,29 @@ coverage/
 *.tmp
 *.temp
 .cache/
+nohup.out
+*.log
+
+# Temporary documentation (keep only essential docs)
+*_GUIDE.md
+*_STATUS.md
+*_FIXES.md
+*_SUMMARY.md
+*_ANALYSIS.md
+*_NOVELTY.md
+*_FEATURES.md
+*_MAP.txt
+
+# Shell scripts for running the project
+start_backend.sh
+start_frontend.sh
+
+# API keys and sensitive data
+*.env
+.env.*
+**/config/*.key
+**/config/*.secret
+
+# Additional unwanted markdowns
+QUICKSTART.md
+HOW_TO_RUN.md
