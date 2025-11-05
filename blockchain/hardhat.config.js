@@ -14,11 +14,11 @@ module.exports = {
     },
     networks: {
         mumbai: {
-            url: "https://polygon-testnet.public.blastapi.io",
+            url: process.env.POLYGON_MUMBAI_RPC || "https://rpc-amoy.polygon.technology",
             accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
-            chainId: 80001,
+            chainId: 80002,  // Polygon Amoy testnet (Mumbai is deprecated)
             gas: 5000000,
-            gasPrice: 8000000000
+            gasPrice: 30000000000  // 30 Gwei (increased for Amoy)
         },
         localhost: {
             url: "http://127.0.0.1:8545"

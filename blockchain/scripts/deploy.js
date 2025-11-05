@@ -3,21 +3,24 @@ const fs = require('fs');
 const path = require('path');
 
 async function main() {
-    console.log("Deploying XAIChainVerifier to Polygon Mumbai...");
+    console.log("Deploying XAIChainVerifier to Polygon Amoy (Mumbai replacement)...");
     
     const XAIChainVerifier = await hre.ethers.getContractFactory("XAIChainVerifier");
     const contract = await XAIChainVerifier.deploy();
     
-    await contract.deployed();
+    // Wait for deployment to complete (ethers v6 syntax)
+    await contract.waitForDeployment();
     
-    console.log(`✅ Contract deployed to: ${contract.address}`);
-    console.log(`🔗 View on Polygonscan: https://mumbai.polygonscan.com/address/${contract.address}`);
+    const contractAddress = await contract.getAddress();
+    
+    console.log(`✅ Contract deployed to: ${contractAddress}`);
+    console.log(`🔗 View on Polygonscan: https://amoy.polygonscan.com/address/${contractAddress}`);
     
     // Save address for frontend and backend
     const contractData = {
-        address: contract.address,
-        network: "mumbai",
-        chainId: 80001,
+        address: contractAddress,
+        network: "amoy",
+        chainId: 80002,
         deployedAt: new Date().toISOString()
     };
     
