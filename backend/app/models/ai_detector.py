@@ -47,13 +47,14 @@ class AIDetector:
             with open(self.scaler_path, 'rb') as f:
                 self.scaler = pickle.load(f)
             
+            # Feature names MUST match those used in train_model.py
             self.feature_names = [
-                'gas_price', 'gas_used', 'value', 'gas_price_deviation',
-                'sender_tx_count', 'contract_age', 'is_contract_creation',
-                'function_signature_hash', 'block_gas_used_ratio'
+                'amount', 'gas_price', 'gas_used', 'num_transfers',
+                'unique_addresses', 'time_of_day', 'contract_interaction',
+                'sender_tx_count', 'receiver_tx_count'
             ]
             
-            logger.info("AI model loaded successfully")
+            logger.info("✅ AI model loaded successfully")
         except Exception as e:
             logger.error(f"Failed to load model: {e}")
             logger.warning("Using mock model for testing")
@@ -77,9 +78,9 @@ class AIDetector:
         self.model = MockModel()
         self.scaler = MockScaler()
         self.feature_names = [
-            'gas_price', 'gas_used', 'value', 'gas_price_deviation',
-            'sender_tx_count', 'contract_age', 'is_contract_creation',
-            'function_signature_hash', 'block_gas_used_ratio'
+            'amount', 'gas_price', 'gas_used', 'num_transfers',
+            'unique_addresses', 'time_of_day', 'contract_interaction',
+            'sender_tx_count', 'receiver_tx_count'
         ]
     
     def predict(self, features: dict) -> dict:
