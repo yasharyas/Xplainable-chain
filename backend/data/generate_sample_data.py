@@ -30,6 +30,10 @@ def generate_transaction_data(n_samples=10000):
     n_legitimate = n_samples - n_malicious
     
     # Generate legitimate transactions
+    # Use log-normal distribution for tx counts to match real blockchain (ranges from 10 to millions)
+    legitimate_sender_counts = np.random.lognormal(mean=8, sigma=3, size=n_legitimate).astype(int)
+    legitimate_receiver_counts = np.random.lognormal(mean=7, sigma=3, size=n_legitimate).astype(int)
+    
     legitimate_data = {
         'amount': np.random.exponential(scale=0.5, size=n_legitimate),  # Most transactions are small
         'gas_price': np.random.normal(loc=50, scale=15, size=n_legitimate),  # Normal gas prices
@@ -38,12 +42,16 @@ def generate_transaction_data(n_samples=10000):
         'unique_addresses': np.random.poisson(lam=2, size=n_legitimate),  # Few addresses
         'time_of_day': np.random.randint(0, 24, size=n_legitimate),  # Distributed throughout day
         'contract_interaction': np.random.binomial(1, 0.4, size=n_legitimate),  # 40% interact with contracts
-        'sender_tx_count': np.random.poisson(lam=50, size=n_legitimate),  # Established accounts
-        'receiver_tx_count': np.random.poisson(lam=50, size=n_legitimate),
+        'sender_tx_count': legitimate_sender_counts,  # Realistic range: 10 - 1M+
+        'receiver_tx_count': legitimate_receiver_counts,  # Realistic range: 10 - 1M+
         'is_malicious': np.zeros(n_legitimate)
     }
     
     # Generate malicious transactions with suspicious patterns
+    # Malicious accounts are typically new (low tx count) - use smaller lognormal
+    malicious_sender_counts = np.random.lognormal(mean=2, sigma=2, size=n_malicious).astype(int)
+    malicious_receiver_counts = np.random.lognormal(mean=2, sigma=2, size=n_malicious).astype(int)
+    
     malicious_data = {
         'amount': np.concatenate([
             np.random.exponential(scale=2, size=n_malicious//2),  # Large amounts
@@ -55,8 +63,8 @@ def generate_transaction_data(n_samples=10000):
         'unique_addresses': np.random.poisson(lam=10, size=n_malicious),  # Many addresses
         'time_of_day': np.random.choice([2, 3, 4, 5], size=n_malicious),  # Unusual hours
         'contract_interaction': np.random.binomial(1, 0.8, size=n_malicious),  # High contract interaction
-        'sender_tx_count': np.random.poisson(lam=5, size=n_malicious),  # New/suspicious accounts
-        'receiver_tx_count': np.random.poisson(lam=5, size=n_malicious),
+        'sender_tx_count': malicious_sender_counts,  # New/suspicious accounts (1-1000 range)
+        'receiver_tx_count': malicious_receiver_counts,  # New/suspicious accounts
         'is_malicious': np.ones(n_malicious)
     }
     
