@@ -1,10 +1,16 @@
 from web3 import Web3
+from web3.middleware import geth_poa_middleware
 from eth_account import Account
 import json
 import os
 from typing import Optional, Dict
 import logging
 from pathlib import Path
+from fastapi import HTTPException
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 
@@ -13,9 +19,39 @@ class BlockchainService:
     
     def __init__(self):
         """Initialize Web3 connection"""
-        # Connect to Infura or other RPC
-        infura_url = os.getenv("INFURA_URL", "https://polygon-mumbai.infura.io/v3/YOUR_KEY")
-        self.w3 = Web3(Web3.HTTPProvider(infura_url))
+        # Get Infura API key
+        infura_key = os.getenv("INFURA_API_KEY", "")
+        
+        # Setup network RPCs
+        self.network_rpcs = {
+            "ethereum": os.getenv("ETHEREUM_MAINNET_RPC", f"https://mainnet.infura.io/v3/{infura_key}"),
+            "polygon": os.getenv("POLYGON_MAINNET_RPC", f"https://polygon-mainnet.infura.io/v3/{infura_key}"),
+            "polygon-amoy": os.getenv("POLYGON_AMOY_RPC", f"https://polygon-amoy.infura.io/v3/{infura_key}"),
+        }
+        
+        # Default Web3 connection (Polygon Amoy)
+        default_rpc = os.getenv("INFURA_URL", self.network_rpcs["polygon-amoy"])
+        self.w3 = Web3(Web3.HTTPProvider(default_rpc))
+        # Inject PoA middleware for Polygon Amoy (default network)
+        self.w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+        logger.info("✅ Injected PoA middleware for default Web3 instance (Polygon Amoy)")
+        
+        # Web3 instances for different networks
+        self.network_w3 = {}
+        for network, rpc in self.network_rpcs.items():
+            try:
+                w3_instance = Web3(Web3.HTTPProvider(rpc))
+                
+                # Add PoA middleware for Polygon networks (Proof of Authority chains)
+                if network.startswith('polygon'):
+                    w3_instance.middleware_onion.inject(geth_poa_middleware, layer=0)
+                    logger.info(f"✅ Injected PoA middleware for {network}")
+                
+                self.network_w3[network] = w3_instance
+                is_connected = w3_instance.is_connected()
+                logger.info(f"Network '{network}' - RPC: {rpc} - Connected: {is_connected}")
+            except Exception as e:
+                logger.error(f"Failed to initialize Web3 for {network}: {e}")
         
         # Load contract
         contract_address = os.getenv("CONTRACT_ADDRESS")
@@ -73,39 +109,84 @@ class BlockchainService:
     
     async def get_transaction(self, tx_hash: str, network: str = "ethereum") -> Optional[Dict]:
         """
-        Fetch transaction data from blockchain
+        Fetch REAL transaction data from blockchain
         
         Args:
-            tx_hash: Transaction hash
-            network: Blockchain network
+            tx_hash: Transaction hash (with 0x prefix)
+            network: Blockchain network (ethereum, polygon, polygon-amoy)
         
         Returns:
-            Transaction data dictionary
+            Transaction data dictionary with extracted features
         """
         try:
-            if not self.w3.is_connected():
-                logger.warning("Web3 not connected, returning mock data")
-                return self._get_mock_transaction(tx_hash)
+            # Get Web3 instance for the specified network
+            w3 = self.network_w3.get(network, self.w3)
             
-            tx = self.w3.eth.get_transaction(tx_hash)
-            receipt = self.w3.eth.get_transaction_receipt(tx_hash)
-            block = self.w3.eth.get_block(tx['blockNumber'])
+            if not w3.is_connected():
+                logger.error(f"Web3 not connected to {network}")
+                raise HTTPException(status_code=503, detail=f"Cannot connect to {network} network")
+            
+            logger.info(f"Fetching transaction {tx_hash} from {network}")
+            
+            # Fetch transaction data
+            tx = w3.eth.get_transaction(tx_hash)
+            receipt = w3.eth.get_transaction_receipt(tx_hash)
+            
+            # Get sender transaction count
+            sender_tx_count = w3.eth.get_transaction_count(tx['from'])
+            
+            # Get receiver transaction count (if to address exists)
+            receiver_tx_count = 0
+            if tx['to']:
+                receiver_tx_count = w3.eth.get_transaction_count(tx['to'])
+            
+            # Get block for timestamp
+            block = w3.eth.get_block(tx['blockNumber'])
+            
+            # Calculate time of day (0-23 hours)
+            from datetime import datetime
+            timestamp = block['timestamp']
+            time_of_day = datetime.fromtimestamp(timestamp).hour
+            
+            # Check if it's a contract interaction
+            contract_interaction = 1 if (tx['to'] and len(tx.get('input', '0x')) > 2) else 0
+            
+            # Count unique addresses in transaction
+            unique_addresses = len(set([tx['from'], tx['to']]) - {None})
+            
+            # Extract token transfers from logs (simplified)
+            num_transfers = len(receipt.get('logs', []))
+            
+            # Convert values
+            amount = float(w3.from_wei(tx['value'], 'ether'))
+            gas_price = float(w3.from_wei(tx['gasPrice'], 'gwei'))
+            gas_used = receipt['gasUsed']
             
             return {
                 'hash': tx_hash,
                 'from': tx['from'],
                 'to': tx['to'] if tx['to'] else '',
-                'value': float(self.w3.from_wei(tx['value'], 'ether')),
-                'gas': tx['gas'],
-                'gas_price': float(self.w3.from_wei(tx['gasPrice'], 'gwei')),
-                'gas_used': receipt['gasUsed'],
+                'amount': amount,
+                'gas_price': gas_price,
+                'gas_used': gas_used,
+                'num_transfers': num_transfers,
+                'unique_addresses': unique_addresses,
+                'time_of_day': time_of_day,
+                'contract_interaction': contract_interaction,
+                'sender_tx_count': sender_tx_count,
+                'receiver_tx_count': receiver_tx_count,
                 'block_number': tx['blockNumber'],
-                'timestamp': block['timestamp'],
-                'input': tx['input'].hex() if hasattr(tx['input'], 'hex') else tx['input']
+                'timestamp': timestamp,
+                'network': network
             }
         except Exception as e:
-            logger.error(f"Error fetching transaction: {e}")
-            return self._get_mock_transaction(tx_hash)
+            logger.error(f"Error fetching transaction {tx_hash}: {e}")
+            logger.error(f"Error type: {type(e).__name__}")
+            # Return None instead of mock data - let the caller handle the error
+            raise HTTPException(
+                status_code=404,
+                detail=f"Transaction not found or error fetching from {network}: {str(e)}"
+            )
     
     def _get_mock_transaction(self, tx_hash: str) -> Dict:
         """Return mock transaction data for testing"""
@@ -139,14 +220,23 @@ class BlockchainService:
         
         Returns:
             Transaction hash of storage transaction
+            
+        Raises:
+            HTTPException: If blockchain storage fails
         """
         try:
             if not self.contract or not self.account:
-                logger.warning("Contract or account not available, returning mock hash")
-                return "0x" + "mock_blockchain_hash_" + tx_hash[2:20]
+                logger.error("Blockchain storage FAILED: Contract or account not configured")
+                raise HTTPException(
+                    status_code=503,
+                    detail="Blockchain storage not configured. Please check CONTRACT_ADDRESS and PRIVATE_KEY in environment."
+                )
             
             # Convert tx_hash to bytes32
             tx_hash_bytes = Web3.to_bytes(hexstr=tx_hash)
+            
+            logger.info(f"Storing explanation on blockchain for tx: {tx_hash}")
+            logger.info(f"IPFS hash: {ipfs_hash}, Risk score: {risk_score}")
             
             # Build transaction
             txn = self.contract.functions.storeExplanation(
@@ -164,14 +254,22 @@ class BlockchainService:
             signed_txn = self.account.sign_transaction(txn)
             tx_hash_result = self.w3.eth.send_raw_transaction(signed_txn.rawTransaction)
             
+            logger.info(f"Transaction sent, waiting for confirmation...")
+            
             # Wait for confirmation
             receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash_result)
             
             result_hash = receipt['transactionHash'].hex()
-            logger.info(f"Stored on blockchain: {result_hash}")
+            logger.info(f"✅ Stored on blockchain: {result_hash}")
+            logger.info(f"📊 Block number: {receipt['blockNumber']}, Gas used: {receipt['gasUsed']}")
             return result_hash
             
+        except HTTPException:
+            raise
         except Exception as e:
-            logger.error(f"Blockchain storage error: {e}")
-            logger.warning("Returning mock blockchain hash")
-            return "0x" + "mock_blockchain_hash_" + tx_hash[2:20]
+            logger.error(f"Blockchain storage error: {str(e)}")
+            raise HTTPException(
+                status_code=503,
+                detail=f"Failed to store on blockchain: {str(e)}"
+            )
+
