@@ -9,6 +9,7 @@ import { Shield, ArrowLeft, Loader2, AlertTriangle, CheckCircle } from 'lucide-r
 export default function AnalyzePage() {
   const { isConnected } = useAccount();
   const [txHash, setTxHash] = useState('');
+  const [network, setNetwork] = useState<'ethereum' | 'polygon' | 'polygon-amoy'>('ethereum');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
   const [error, setError] = useState('');
@@ -31,18 +32,8 @@ export default function AnalyzePage() {
         },
         body: JSON.stringify({
           tx_hash: txHash,
-          network: 'ethereum',
-          transaction_data: {
-            amount: 0.01040272,
-            gas_price: 0.117164461,
-            gas_used: 21000,
-            num_transfers: 1,
-            unique_addresses: 2,
-            time_of_day: 10,
-            contract_interaction: 0,
-            sender_tx_count: 150,
-            receiver_tx_count: 75,
-          },
+          network: network,  // Use selected network from dropdown
+          // DO NOT send transaction_data - let backend fetch from blockchain
         }),
       });
 
@@ -80,6 +71,22 @@ export default function AnalyzePage() {
           <h2 className="text-3xl font-bold text-white mb-6">Transaction Analysis</h2>
           
           <div className="space-y-6">
+            {/* Network Selector */}
+            <div>
+              <label className="block text-gray-300 mb-2 font-medium">
+                Blockchain Network
+              </label>
+              <select
+                value={network}
+                onChange={(e) => setNetwork(e.target.value as 'ethereum' | 'polygon' | 'polygon-amoy')}
+                className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-purple-500"
+              >
+                <option value="ethereum">Ethereum Mainnet</option>
+                <option value="polygon">Polygon Mainnet</option>
+                <option value="polygon-amoy">Polygon Amoy Testnet</option>
+              </select>
+            </div>
+
             {/* Input */}
             <div>
               <label className="block text-gray-300 mb-2 font-medium">
@@ -89,7 +96,13 @@ export default function AnalyzePage() {
                 type="text"
                 value={txHash}
                 onChange={(e) => setTxHash(e.target.value)}
-                placeholder="0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060"
+                placeholder={
+                  network === 'ethereum' 
+                    ? "0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060" 
+                    : network === 'polygon'
+                    ? "0x... (Polygon transaction hash)"
+                    : "0x... (Polygon Amoy transaction hash)"
+                }
                 className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500"
               />
             </div>
