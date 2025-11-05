@@ -7,8 +7,13 @@ def extract_features(tx_data: Dict) -> Dict:
     Extract ML features from transaction data
     IMPORTANT: Must match features used during model training!
     
+    Features match those in train_model.py:
+    1. amount, 2. gas_price, 3. gas_used, 4. num_transfers,
+    5. unique_addresses, 6. time_of_day, 7. contract_interaction,
+    8. sender_tx_count, 9. receiver_tx_count
+    
     Args:
-        tx_data: Raw transaction data from blockchain
+        tx_data: Raw transaction data from blockchain or user-provided
     
     Returns:
         Dictionary of engineered features matching training data
@@ -16,7 +21,13 @@ def extract_features(tx_data: Dict) -> Dict:
     features = {}
     
     # Feature 1: amount (transaction value in ETH)
-    features['amount'] = float(tx_data.get('value', 0) / 1e18) if tx_data.get('value') else 0.5
+    if 'amount' in tx_data:
+        features['amount'] = float(tx_data['amount'])
+    elif 'value' in tx_data:
+        # Convert from Wei to ETH if value is in Wei
+        features['amount'] = float(tx_data['value']) / 1e18 if tx_data['value'] > 1000 else float(tx_data['value'])
+    else:
+        features['amount'] = 0.5
     
     # Feature 2: gas_price (in Gwei)
     features['gas_price'] = float(tx_data.get('gas_price', 50))
@@ -35,9 +46,12 @@ def extract_features(tx_data: Dict) -> Dict:
     features['time_of_day'] = int(tx_data.get('time_of_day', datetime.now().hour))
     
     # Feature 7: contract_interaction (boolean: 1 or 0)
-    to_address = tx_data.get('to', '')
-    input_data = tx_data.get('input', '0x')
-    features['contract_interaction'] = 1 if (input_data and input_data != '0x') else 0
+    if 'contract_interaction' in tx_data:
+        features['contract_interaction'] = int(tx_data['contract_interaction'])
+    else:
+        to_address = tx_data.get('to', '')
+        input_data = tx_data.get('input', '0x')
+        features['contract_interaction'] = 1 if (input_data and input_data != '0x') else 0
     
     # Feature 8: sender_tx_count (historical transactions from sender)
     features['sender_tx_count'] = int(tx_data.get('sender_tx_count', 50))
