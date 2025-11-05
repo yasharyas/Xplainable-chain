@@ -1,52 +1,30 @@
-<div align="center"><div align="center">
+<div align="center">
 
+# 🔗 XAI-Chain
 
+### Explainable AI for Blockchain Security
 
-# 🔗 XAI-Chain# 🔗 XAI-Chain
+**Detect malicious blockchain transactions with AI • Explain every decision • Verify on-chain**
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688)](https://fastapi.tiangolo.com/)
+[![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636)](https://soliditylang.org/)
 
+[Live Demo](#) • [Documentation](#) • [Quick Start](#-quick-start)
 
-### Explainable AI for Blockchain Security### Explainable AI for Blockchain Security
+</div>
 
+---
 
+## 🎯 Overview
 
-**Detect malicious blockchain transactions with AI • Explain every decision • Verify on-chain****Detect malicious blockchain transactions with AI • Explain every decision • Verify on-chain**
+XAI-Chain is a production-ready Web3 + AI security platform that combines machine learning with explainable AI (XAI) to detect malicious blockchain transactions. Every prediction is explained using SHAP values and stored immutably on Polygon Amoy testnet.
 
+### ✨ Key Features
 
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
-
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688)](https://fastapi.tiangolo.com/)[![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688)](https://fastapi.tiangolo.com/)
-
-[![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636)](https://soliditylang.org/)[![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636)](https://soliditylang.org/)
-
-
-
-</div></div>
-
-
-
-------
-
-
-
-## 🎯 Overview## 🎯 Overview
-
-
-
-XAI-Chain is a production-ready Web3 + AI security platform that combines machine learning with explainable AI (XAI) to detect malicious blockchain transactions. Every prediction is explained using SHAP values and stored immutably on Polygon Mumbai testnet.XAI-Chain is a production-ready Web3 + AI security platform that combines machine learning with explainable AI (XAI) to detect malicious blockchain transactions. Every prediction is explained using SHAP values and stored immutably on Polygon Mumbai testnet.
-
-
-
-### ✨ Key Features### ✨ Key Features
-
-
-
-- 🤖 **AI-Powered Detection**: XGBoost model trained on blockchain transaction patterns- 🤖 **AI-Powered Detection**: XGBoost model trained on blockchain transaction patterns
-
-- 📊 **Explainable AI**: SHAP (SHapley Additive exPlanations) for transparency- 📊 **Explainable AI**: SHAP (SHapley Additive exPlanations) for transparency
+- 🤖 **AI-Powered Detection**: XGBoost model trained on blockchain transaction patterns
+- 📊 **Explainable AI**: SHAP (SHapley Additive exPlanations) for transparency
 
 - ⛓️ **On-Chain Verification**: Immutable storage on Polygon Mumbai testnet- ⛓️ **On-Chain Verification**: Immutable storage on Polygon Mumbai testnet
 
