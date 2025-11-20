@@ -34,7 +34,7 @@ class BlockchainService:
         self.w3 = Web3(Web3.HTTPProvider(default_rpc))
         # Inject PoA middleware for Polygon Amoy (default network)
         self.w3.middleware_onion.inject(geth_poa_middleware, layer=0)
-        logger.info("✅ Injected PoA middleware for default Web3 instance (Polygon Amoy)")
+        logger.info(" Injected PoA middleware for default Web3 instance (Polygon Amoy)")
         
         # Web3 instances for different networks
         self.network_w3 = {}
@@ -45,7 +45,7 @@ class BlockchainService:
                 # Add PoA middleware for Polygon networks (Proof of Authority chains)
                 if network.startswith('polygon'):
                     w3_instance.middleware_onion.inject(geth_poa_middleware, layer=0)
-                    logger.info(f"✅ Injected PoA middleware for {network}")
+                    logger.info(f" Injected PoA middleware for {network}")
                 
                 self.network_w3[network] = w3_instance
                 is_connected = w3_instance.is_connected()
@@ -56,8 +56,10 @@ class BlockchainService:
         # Load contract
         contract_address = os.getenv("CONTRACT_ADDRESS")
         
-        # Try to load contract ABI
-        abi_path = Path(__file__).parent.parent.parent.parent / "frontend" / "public" / "abi" / "XAIChainVerifier.json"
+        # Try to load contract ABI (check backend/abi first, then frontend/public/abi)
+        abi_path = Path(__file__).parent.parent.parent / "abi" / "XAIChainVerifier.json"
+        if not abi_path.exists():
+            abi_path = Path(__file__).parent.parent.parent.parent / "frontend" / "public" / "abi" / "XAIChainVerifier.json"
         
         try:
             if abi_path.exists():
@@ -260,8 +262,8 @@ class BlockchainService:
             receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash_result)
             
             result_hash = receipt['transactionHash'].hex()
-            logger.info(f"✅ Stored on blockchain: {result_hash}")
-            logger.info(f"📊 Block number: {receipt['blockNumber']}, Gas used: {receipt['gasUsed']}")
+            logger.info(f" Stored on blockchain: {result_hash}")
+            logger.info(f" Block number: {receipt['blockNumber']}, Gas used: {receipt['gasUsed']}")
             return result_hash
             
         except HTTPException:
