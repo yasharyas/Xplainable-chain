@@ -13,8 +13,8 @@ async function main() {
     
     const contractAddress = await contract.getAddress();
     
-    console.log(`✅ Contract deployed to: ${contractAddress}`);
-    console.log(`🔗 View on Polygonscan: https://amoy.polygonscan.com/address/${contractAddress}`);
+    console.log(`[OK] Contract deployed to: ${contractAddress}`);
+    console.log(`* View on Polygonscan: https://amoy.polygonscan.com/address/${contractAddress}`);
     
     // Save address for frontend and backend
     const contractData = {
@@ -29,7 +29,7 @@ async function main() {
     fs.mkdirSync(path.dirname(frontendPath), { recursive: true });
     fs.writeFileSync(frontendPath, JSON.stringify(contractData, null, 2));
     
-    console.log("📄 Contract address saved to frontend/public/abi/");
+    console.log("* Contract address saved to frontend/public/abi/");
     
     // Save contract ABI
     const artifact = await hre.artifacts.readArtifact("XAIChainVerifier");
@@ -38,7 +38,7 @@ async function main() {
         JSON.stringify(artifact, null, 2)
     );
     
-    console.log("📄 Contract ABI saved to frontend/public/abi/");
+    console.log("* Contract ABI saved to frontend/public/abi/");
 }
 
 main().catch((error) => {
