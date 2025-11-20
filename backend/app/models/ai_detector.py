@@ -54,7 +54,7 @@ class AIDetector:
                 'sender_tx_count', 'receiver_tx_count'
             ]
             
-            logger.info("✅ AI model loaded successfully")
+            logger.info(" AI model loaded successfully")
         except Exception as e:
             logger.error(f"Failed to load model: {e}")
             logger.warning("Using mock model for testing")
@@ -64,16 +64,35 @@ class AIDetector:
         """Create a mock model for testing when real model is not available"""
         class MockModel:
             def predict(self, X):
+                # Ensure X is numpy array with float dtype
+                X_array = np.asarray(X, dtype=np.float64)
                 # Simple heuristic: high gas price or high value = malicious
-                return np.array([1 if (x[0] > 80 or x[2] > 50) else 0 for x in X])
+                # x[0] = amount, x[1] = gas_price, x[2] = gas_used
+                predictions = []
+                for x in X_array:
+                    # High amount (> 10 ETH) or very high gas used (> 100000) = suspicious
+                    is_suspicious = (x[0] > 10.0) or (x[2] > 100000) or (x[1] > 200)
+                    predictions.append(1 if is_suspicious else 0)
+                return np.array(predictions, dtype=np.int32)
             
             def predict_proba(self, X):
                 predictions = self.predict(X)
-                return np.array([[1-p, p] for p in predictions])
+                # Convert to probabilities [prob_normal, prob_malicious]
+                probabilities = []
+                for pred in predictions:
+                    if pred == 1:
+                        # Malicious: higher probability for class 1
+                        probabilities.append([0.3, 0.7])
+                    else:
+                        # Normal: higher probability for class 0
+                        probabilities.append([0.8, 0.2])
+                return np.array(probabilities, dtype=np.float64)
         
         class MockScaler:
             def transform(self, X):
-                return X
+                # Ensure input is converted to numpy array with proper float dtype
+                # This prevents string comparison errors
+                return np.asarray(X, dtype=np.float64)
         
         self.model = MockModel()
         self.scaler = MockScaler()

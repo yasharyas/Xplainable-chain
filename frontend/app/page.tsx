@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount } from 'wagmi';
 import Link from 'next/link';
 import { Shield, Activity, FileSearch, TrendingUp, Github } from 'lucide-react';
+import { ReactNode } from 'react';
 
 export default function Home() {
   const { isConnected } = useAccount();
@@ -65,7 +65,30 @@ export default function Home() {
       </section>
 
       {/* Features */}
-      <section className="container mx-auto px-4 py-20 grid md:grid-cols-3 gap-8">
+      <section className="container mx-auto px-4 py-20">
+        {/* Causal XAI Highlight */}
+        <div className="mb-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-8 shadow-2xl">
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <div className="inline-block px-3 py-1 bg-white/20 rounded-full text-white text-sm font-semibold mb-3">
+                🔬 RESEARCH FEATURE
+              </div>
+              <h3 className="text-3xl font-bold text-white mb-3">Causal Explainable AI</h3>
+              <p className="text-purple-100 text-lg mb-4">
+                First-ever causal inference for blockchain fraud detection. Go beyond correlation 
+                to identify true cause-and-effect relationships. Detect spurious correlations and confounders.
+              </p>
+              <Link
+                href="/analyze/causal"
+                className="inline-block px-8 py-3 bg-white text-purple-600 font-bold rounded-lg hover:bg-purple-50 transition-all transform hover:scale-105"
+              >
+                Explore Causal XAI →
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
         <FeatureCard
           icon={<Activity className="w-12 h-12 text-purple-400" />}
           title="Real-time Detection"
@@ -81,6 +104,7 @@ export default function Home() {
           title="On-Chain Verification"
           description="Explanations stored immutably on Polygon for transparency"
         />
+        </div>
       </section>
 
       {/* Stats */}
@@ -97,7 +121,7 @@ export default function Home() {
       <footer className="container mx-auto px-4 py-8 border-t border-gray-800">
         <div className="flex justify-between items-center">
           <p className="text-gray-400 text-sm">
-            © 2024 XAI-Chain. Built with Next.js, FastAPI, and Web3.
+            © 2025 XAI-Chain. Built with Next.js, FastAPI, and Web3.
           </p>
           <a
             href="https://github.com/yourusername/xai-chain"
@@ -113,7 +137,13 @@ export default function Home() {
   );
 }
 
-function FeatureCard({ icon, title, description }: any) {
+interface FeatureCardProps {
+  icon: ReactNode;
+  title: string;
+  description: string;
+}
+
+function FeatureCard({ icon, title, description }: FeatureCardProps) {
   return (
     <div className="bg-gray-800/50 backdrop-blur-lg rounded-xl p-6 hover:bg-gray-800/70 transition transform hover:scale-105">
       <div className="mb-4">{icon}</div>
@@ -123,7 +153,12 @@ function FeatureCard({ icon, title, description }: any) {
   );
 }
 
-function StatCard({ label, value }: any) {
+interface StatCardProps {
+  label: string;
+  value: string;
+}
+
+function StatCard({ label, value }: StatCardProps) {
   return (
     <div>
       <div className="text-4xl font-bold text-purple-400 mb-2">{value}</div>

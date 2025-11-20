@@ -78,7 +78,7 @@ async def analyze_transaction(request: AnalyzeRequest):
                 detail=f"Transaction {request.tx_hash} not found on {request.network} network. Please verify the hash and network are correct."
             )
         
-        logger.info(f"✅ Fetched real transaction data from {request.network}")
+        logger.info(f" Fetched real transaction data from {request.network}")
         
         # 4. Extract features for ML model
         features = extract_features(tx_data)
@@ -114,7 +114,7 @@ async def analyze_transaction(request: AnalyzeRequest):
         ipfs_hash = None
         try:
             ipfs_hash = await ipfs_service.upload_json(explanation_data)
-            logger.info(f"✅ Uploaded to IPFS: {ipfs_hash}")
+            logger.info(f" Uploaded to IPFS: {ipfs_hash}")
         except HTTPException as e:
             if e.status_code == 503:
                 logger.warning(f"⚠️  IPFS upload failed (Pinata JWT lacks scopes), continuing without IPFS storage")
@@ -134,7 +134,7 @@ async def analyze_transaction(request: AnalyzeRequest):
                     ipfs_hash=ipfs_hash,
                     risk_score=risk_score
                 )
-                logger.info(f"✅ Stored on blockchain: {blockchain_hash}")
+                logger.info(f" Stored on blockchain: {blockchain_hash}")
             else:
                 logger.warning("⚠️  Skipping blockchain storage (no valid IPFS hash)")
                 blockchain_hash = "BLOCKCHAIN_UNAVAILABLE_NO_IPFS"
