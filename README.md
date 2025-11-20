@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🔗 XAI-Chain
+#  XAI-Chain
 
 ### Explainable AI for Blockchain Security
 
@@ -17,26 +17,26 @@
 
 ---
 
-## 🎯 Overview
+##  Overview
 
 XAI-Chain is a production-ready Web3 + AI security platform that combines machine learning with explainable AI (XAI) to detect malicious blockchain transactions. Every prediction is explained using SHAP values and stored immutably on Polygon Amoy testnet.
 
-### ✨ Key Features
+###  Key Features
 
-- 🤖 **AI-Powered Detection**: XGBoost model trained on blockchain transaction patterns
-- 📊 **Explainable AI**: SHAP (SHapley Additive exPlanations) for transparency
+-  **AI-Powered Detection**: XGBoost model trained on blockchain transaction patterns
+-  **Explainable AI**: SHAP (SHapley Additive exPlanations) for transparency
 
-- ⛓️ **On-Chain Verification**: Immutable storage on Polygon Mumbai testnet- ⛓️ **On-Chain Verification**: Immutable storage on Polygon Mumbai testnet
+-  **On-Chain Verification**: Immutable storage on Polygon Mumbai testnet-  **On-Chain Verification**: Immutable storage on Polygon Mumbai testnet
 
-- 📦 **IPFS Storage**: Decentralized explanation data via Pinata- 📦 **IPFS Storage**: Decentralized explanation data via Pinata
+-  **IPFS Storage**: Decentralized explanation data via Pinata-  **IPFS Storage**: Decentralized explanation data via Pinata
 
-- 🎨 **Modern UI**: Next.js 14 with Tailwind CSS and shadcn/ui- 🎨 **Modern UI**: Next.js 14 with Tailwind CSS and shadcn/ui
+-  **Modern UI**: Next.js 14 with Tailwind CSS and shadcn/ui-  **Modern UI**: Next.js 14 with Tailwind CSS and shadcn/ui
 
-- 🔗 **Web3 Integration**: RainbowKit + Wagmi for seamless wallet connection- 🔗 **Web3 Integration**: RainbowKit + Wagmi for seamless wallet connection
+-  **Web3 Integration**: RainbowKit + Wagmi for seamless wallet connection-  **Web3 Integration**: RainbowKit + Wagmi for seamless wallet connection
 
-- 🔍 **Real-Time Analysis**: Instant transaction risk assessment- 🔍 **Real-Time Analysis**: Instant transaction risk assessment
+-  **Real-Time Analysis**: Instant transaction risk assessment-  **Real-Time Analysis**: Instant transaction risk assessment
 
-- 📈 **Interactive Dashboard**: Monitor and track analysis history- 📈 **Interactive Dashboard**: Monitor and track analysis history
+-  **Interactive Dashboard**: Monitor and track analysis history-  **Interactive Dashboard**: Monitor and track analysis history
 
 
 
@@ -44,7 +44,7 @@ XAI-Chain is a production-ready Web3 + AI security platform that combines machin
 
 
 
-## 🏗️ Architecture## 🏗️ Architecture
+##  Architecture##  Architecture
 
 
 
@@ -104,7 +104,7 @@ XAI-Chain is a production-ready Web3 + AI security platform that combines machin
 
 
 
-## 📦 Project Structure## 📦 Project Structure
+##  Project Structure##  Project Structure
 
 
 
@@ -176,11 +176,11 @@ xai-chain/xai-chain/
 
 
 
-## 🚀 Quick Start## 🚀 Quick Start
+##  Quick Start##  Quick Start
 
 
 
-### Prerequisites## 🚀 Quick Start
+### Prerequisites##  Quick Start
 
 
 
@@ -492,7 +492,7 @@ pytest tests/
 
 
 
-## 🤖 ML Model Details```Create a Jupyter notebook or Python script with:
+##  ML Model Details```Create a Jupyter notebook or Python script with:
 
 
 
@@ -646,7 +646,7 @@ wsl bash -c "cd /mnt/d/CODING/Xplainable-blockchain/blockchain && npx hardhat no
 
 ```    learning_rate=0.1,
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
     random_state=42
 
@@ -704,7 +704,7 @@ Get-Process node | Stop-Process -Force```
 
 
 
-# Linux/Macprint("✅ Model saved!")
+# Linux/Macprint(" Model saved!")
 
 lsof -ti:8000 | xargs kill -9
 
@@ -961,7 +961,7 @@ $env:PYTHONPATH="d:\CODING\Xplainable-blockchain\backend"```
 
 d:\CODING\Xplainable-blockchain\backend\venv\Scripts\python.exe -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
-```## 📦 Project Structure
+```##  Project Structure
 
 
 
