@@ -5,7 +5,7 @@ import uvicorn
 from typing import Dict, List
 import logging
 
-from app.routers import analyze, verify, audit
+from app.routers import analyze, verify, audit, causal, causal_novel
 from app.utils.config import settings
 
 # Configure logging
@@ -40,6 +40,8 @@ app.add_middleware(
 app.include_router(analyze.router, prefix="/api/analyze", tags=["analyze"])
 app.include_router(verify.router, prefix="/api/verify", tags=["verify"])
 app.include_router(audit.router, prefix="/api/audit", tags=["audit"])
+app.include_router(causal.router, tags=["causal-analysis"])
+app.include_router(causal_novel.router)  # NOVEL RESEARCH ENDPOINTS (prefix already in router)
 
 @app.get("/")
 def root():

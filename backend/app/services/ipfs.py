@@ -15,16 +15,62 @@ class IPFSService:
     """IPFS service using Pinata API"""
     
     def __init__(self):
-        """Initialize Pinata API client"""
+        """Initialize Pinata API client and validate credentials"""
         self.api_key = os.getenv("PINATA_API_KEY")
         self.api_secret = os.getenv("PINATA_API_SECRET")
         self.jwt = os.getenv("PINATA_JWT")
         self.base_url = "https://api.pinata.cloud"
+        self.gateway_url = "https://gateway.pinata.cloud/ipfs"
         
         # Use JWT if available (recommended), otherwise use API key/secret
         self.use_jwt = bool(self.jwt)
-        logger.info(f"IPFSService initialized (Mode: {'JWT' if self.use_jwt else 'API Key' if self.api_key else 'Mock'})")
-        self.gateway_url = "https://gateway.pinata.cloud/ipfs"
+        self.jwt_valid = False
+        
+        # Validate JWT on initialization
+        if self.use_jwt:
+            self._validate_jwt()
+        
+        logger.info(f"IPFSService initialized (Mode: {'JWT' if self.use_jwt else 'API Key' if self.api_key else 'Mock'}, Valid: {self.jwt_valid if self.use_jwt else 'N/A'})")
+    
+    def _validate_jwt(self):
+        """
+        Validate Pinata JWT by testing authentication
+        Root cause fix: Check JWT scopes on startup instead of failing silently during upload
+        """
+        try:
+            headers = {"Authorization": f"Bearer {self.jwt}"}
+            # Test with a simple pin list query (requires minimal scopes)
+            response = requests.get(
+                f"{self.base_url}/data/pinList?status=pinned&pageLimit=1",
+                headers=headers,
+                timeout=5
+            )
+            
+            if response.status_code == 200:
+                self.jwt_valid = True
+                logger.info("[OK] Pinata JWT validated successfully")
+            elif response.status_code == 401:
+                logger.error("[ERROR] Pinata JWT is invalid or expired")
+                logger.error("[ACTION] Solution: Generate new JWT at https://app.pinata.cloud/developers/api-keys")
+                self.jwt_valid = False
+            else:
+                result = response.json()
+                if "NO_SCOPES_FOUND" in str(result):
+                    logger.error("[ERROR] Pinata JWT has NO_SCOPES_FOUND - JWT created without permissions")
+                    logger.error("[ACTION] Solution: Create new JWT with these scopes:")
+                    logger.error("   - pinFileToIPFS")
+                    logger.error("   - pinJSONToIPFS")
+                    logger.error("   - pinList (recommended)")
+                    logger.error("   See PINATA_SETUP.md for detailed instructions")
+                    self.jwt_valid = False
+                else:
+                    logger.warning(f"[WARN]  Pinata JWT validation returned status {response.status_code}: {result}")
+                    self.jwt_valid = False
+                    
+        except Exception as e:
+            logger.error(f"[ERROR] Failed to validate Pinata JWT: {str(e)}")
+            logger.error("[ACTION] Check your network connection and PINATA_JWT in .env")
+            self.jwt_valid = False
     
     async def upload_json(self, data: Dict) -> str:
         """
@@ -43,6 +89,16 @@ class IPFSService:
                 status_code=503,
                 detail="IPFS service not configured. Please set PINATA_JWT in environment variables."
             )
+        
+        # Root cause check: Validate JWT before attempting upload
+        if self.use_jwt and not self.jwt_valid:
+            error_msg = (
+                "Pinata JWT is invalid or lacks required scopes. "
+                "Please generate a new JWT with 'pinJSONToIPFS' scope. "
+                "See PINATA_SETUP.md for instructions."
+            )
+            logger.error(f"IPFS upload FAILED: {error_msg}")
+            raise HTTPException(status_code=503, detail=error_msg)
         
         try:
             # Prepare headers (prefer JWT)
@@ -80,8 +136,8 @@ class IPFSService:
             result = response.json()
             ipfs_hash = result['IpfsHash']
             
-            logger.info(f"✅ Successfully uploaded to IPFS: {ipfs_hash}")
-            logger.info(f"📎 View at: https://gateway.pinata.cloud/ipfs/{ipfs_hash}")
+            logger.info(f"[OK] Successfully uploaded to IPFS: {ipfs_hash}")
+            logger.info(f"* View at: https://gateway.pinata.cloud/ipfs/{ipfs_hash}")
             return ipfs_hash
             
         except requests.exceptions.HTTPError as e:

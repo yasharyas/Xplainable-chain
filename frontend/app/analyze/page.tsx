@@ -67,6 +67,24 @@ export default function AnalyzePage() {
 
       {/* Main Content */}
       <section className="container mx-auto px-4 py-12 max-w-4xl">
+        {/* Causal XAI Banner */}
+        <div className="mb-6 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl p-6 shadow-lg">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-xl font-bold text-white mb-2">🔬 New: Causal Explainable AI</h3>
+              <p className="text-purple-100 text-sm">
+                Go beyond correlation with causal inference. Identify true cause-and-effect relationships in fraud detection.
+              </p>
+            </div>
+            <Link
+              href="/analyze/causal"
+              className="px-6 py-3 bg-white text-purple-600 font-semibold rounded-lg hover:bg-purple-50 transition-colors whitespace-nowrap"
+            >
+              Try Causal XAI →
+            </Link>
+          </div>
+        </div>
+
         <div className="bg-gray-800/50 backdrop-blur-lg rounded-2xl p-8">
           <h2 className="text-3xl font-bold text-white mb-6">Transaction Analysis</h2>
           

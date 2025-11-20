@@ -6,8 +6,11 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Install system build deps required for some native npm modules
+# Provide python and build tools for node-gyp to work in Alpine
+RUN apk add --no-cache python3 make g++ build-base \
+	&& ln -sf /usr/bin/python3 /usr/bin/python \
+	&& npm install
 
 # Copy application
 COPY . .

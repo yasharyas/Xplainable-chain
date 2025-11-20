@@ -78,7 +78,6 @@ nohup.out
 *_FIXES.md
 *_SUMMARY.md
 *_ANALYSIS.md
-*_NOVELTY.md
 *_FEATURES.md
 *_MAP.txt
 
@@ -95,3 +94,7 @@ start_frontend.sh
 # Additional unwanted markdowns
 QUICKSTART.md
 HOW_TO_RUN.md
+PINATA_SETUP.md
+POLYGONSCAN_SETUP.md
+PROJECT_STATUS.md
+backend/README.md
